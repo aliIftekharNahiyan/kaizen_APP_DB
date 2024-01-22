@@ -1,0 +1,48 @@
+@using Abp.Authorization.Users
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.ChecklistItems
+@model EditChecklistItemModalViewModel
+@{
+    Layout = null;
+}
+
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditChecklistItem")))
+<form name="checklistItemEditForm" role="form" class="form-horizontal">
+    <input type="hidden" name="Id" value="@Model.ChecklistItem.Id" />
+    <div class="modal-body">
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("Question")</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="Name" value="@Model.ChecklistItem.Name" required minlength="2">
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="mb-12 row">
+            <h5 class="mb-1">Options</h5>
+
+
+            <ul class="todo-list js-todo-list list-group mb-3"></ul>
+        </div>
+
+        <div class="js-form mb-3">
+            <div class="mb-12 row required">
+                <input autofocus type="text" aria-label="Enter a new option" placeholder="Enter a new option" class="js-todo-input form-control">
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="#" class="btn btn-success add-item" value="Add Option">Add Option</a>
+        </div>
+    </div>
+    @await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/ChecklistItem/_EditModal.js" asp-append-version="true"></script>
+
+<script>
+    var todo = new Todo();
+
+    todo.setup(@Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.ChecklistItem.Options)), '#ChecklistItemEditModal');
+</script>

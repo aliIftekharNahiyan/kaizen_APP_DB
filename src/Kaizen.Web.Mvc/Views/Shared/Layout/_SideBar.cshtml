@@ -1,0 +1,8 @@
+﻿@using Kaizen.Web.Views.Shared.Components.SideBarMenu
+@using Kaizen.Web.Views.Shared.Components.SideBarUserArea
+<div class="vertical-menu">
+    @await Component.InvokeAsync(typeof(SideBarUserAreaViewComponent))
+    @await Component.InvokeAsync(typeof(SideBarMenuViewComponent))
+</div>
+        
+

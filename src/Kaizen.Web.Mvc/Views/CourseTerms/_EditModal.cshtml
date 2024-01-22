@@ -1,0 +1,35 @@
+@using Abp.Authorization.Users
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.CourseTerm
+@model EditCourseTermModalViewModel
+@{
+    Layout = null;
+}
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Edit Course Terms")))
+<form id="courseTermEditForm" name="courseTermEditForm" role="form" class="form-horizontal">
+    <input type="hidden" name="Id" value="@Model.CourseTerm.Id" />
+        <input type="hidden" name="CourseId" value="@Model.CourseTerm.CourseId" />
+    <div class="modal-body">
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("Length Of Term")</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="LengthOfTerm" value="@Model.CourseTerm.LengthOfTerm" required >
+            </div>
+        </div>
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("Start Date")</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control mobipicker" name="StartDate" required value="@Model.CourseTerm.StartDate">
+            </div>
+        </div>
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("End Date")</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control mobipicker" name="EndDate" value="@Model.CourseTerm.EndDate">
+            </div>
+        </div>
+
+    </div>@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/CourseTerm/_EditModal.js" asp-append-version="true"></script>

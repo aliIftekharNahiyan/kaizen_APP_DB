@@ -1,0 +1,64 @@
+@using Abp.Authorization.Users
+@using Kaizen.Entities.Companies.Dto;
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.Companies
+@model CreateCompanyDto
+@{
+    Layout = null;
+}
+
+<div class="modal fade" id="CompanyCreateModal" tabindex="-1" role="dialog" aria-labelledby="CompanyCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            @await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Create Company"))
+            <form name="companyCreateForm" id="companyCreateForm" role="form" class="form-horizontal" asp-action="Create" onsubmit="SaveFormSubmit(this);return false;" method="post" enctype="multipart/form-data" data-backdrop="static">
+                <div class="modal-body">
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="Name" required minlength="2" />
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Description</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="Description" required minlength="2" />
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Send From Email Address</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="SendFromEmailAddress" required />
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Primary Brand Colour</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="PrimaryBrandColour" required data-coloris />
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Secondary Brand Colour</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="SecondaryBrandColour" required data-coloris />
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Logo</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="file" name="LogoFile" >
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Is Active</label>
+                        <div class="col-md-9">
+                            <input class="form-check-input" id="IsActive" type="checkbox" name="IsActive" value="true">
+                        </div>
+                    </div>
+                </div>@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+            </form>
+        </div>
+    </div>
+</div>
+<script src="~/view-resources/views/company/_createmodal.js"></script>

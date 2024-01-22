@@ -1,0 +1,86 @@
+﻿@using Kaizen.Web.Startup
+@using Kaizen.Web.Models.Users
+@model UserListViewModel
+@{
+    ViewBag.Title = L("Users");
+    ViewBag.CurrentPageName = PageNames.Users;
+}
+@section scripts
+{
+    <script>
+        let role = 'Non Medical Helper';
+    </script>
+
+    <environment names="Development">
+        <script src="~/view-resources/Views/Users/Index.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/Users/Index.min.js" asp-append-version="true"></script>
+    </environment>
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">@L("Users")</h4>
+
+                    <div class="page-title-right">
+                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#UserCreateModal" class="btn btn-primary">
+                            <i class="fa fa-plus-square"></i>
+                            @L("Create")
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!--Use for bulk actions-->
+                        </div>
+                        <div class="col-md-6">
+                            @await Html.PartialAsync("~/Views/Users/Index.AdvancedSearch.cshtml")
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="UsersTable" class="table table-hover table-nowrap mb-0 align-middle table-check">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="rounded-start"></th>
+                                    <th>@L("UserName")</th>
+                                    <th>@L("FullName")</th>
+                                    <th>@L("EmailAddress")</th>
+                                    <th>@L("IsActive")</th>
+                                    <th class="no-filter rounded-end" style="width: 100px"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@await Html.PartialAsync("~/Views/Users/_CreateModal.cshtml", Model)
+
+<div class="modal fade" id="UserEditModal" tabindex="-1" role="dialog" aria-labelledby="UserEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>

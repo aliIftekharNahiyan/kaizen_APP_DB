@@ -1,0 +1,39 @@
+﻿@using Kaizen.Web.Models.Home;
+@using Kaizen.Web.Startup;
+@model HomeViewModel;
+
+@{
+    ViewBag.Title = L("HomePage");
+    ViewBag.CurrentPageName = PageNames.Home;
+}
+
+@section scripts
+{
+    <environment names="Development">
+       @*  <script src="~/view-resources/Views/Home/Index.js" asp-append-version="true"></script> *@
+    </environment>
+
+    <environment names="Staging,Production">
+        @* <script src="~/view-resources/Views/_Bundles/home-index.min.js" asp-append-version="true"></script> *@
+    </environment>
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0">@L("HomePage")</h4>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    @if(User.IsInRole("Admin"))
+    {
+        @await Html.PartialAsync("_Admin", Model)
+    } 
+    else
+    {
+        @await Html.PartialAsync("_User", Model)
+    } 
+</div>

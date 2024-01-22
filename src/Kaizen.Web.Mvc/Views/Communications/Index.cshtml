@@ -1,0 +1,88 @@
+@using Kaizen.Web.Startup
+@using Kaizen.Web.Models.Checklists
+@model ChecklistListViewModel
+@{
+    ViewBag.Title = L("Communications");
+    ViewBag.CurrentPageName = PageNames.ContactMethods;
+}
+@section scripts
+{
+    <environment names="Development">
+        <script src="~/view-resources/Views/Checklist/Index.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/Checklist/Index.min.js" asp-append-version="true"></script>
+    </environment>
+
+    <script src="https://cdn.jsdelivr.net/gh/RubaXa/Sortable/Sortable.min.js" asp-append-version="true"></script>
+
+    <script>
+        var checklist = new Checklist();
+        checklist.setupGrid();
+        checklist.setupDragDrop('#ChecklistCreateModal', false);
+    </script>
+}
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">@L("Checklists")</h4>
+
+                    <div class="page-title-right">
+                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#ChecklistCreateModal" class="btn btn-primary">
+                            <i class="fa fa-plus-square"></i>
+                            @L("Create")
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!--Use for bulk actions-->
+                        </div>
+                        <div class="col-md-6">
+                            @await Html.PartialAsync("~/Views/Checklists/Index.AdvancedSearch.cshtml")
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="ChecklistTable" class="table table-hover table-nowrap mb-0 align-middle table-check">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="rounded-start"></th>
+                                    <th>@L("Name")</th>
+                                    <th class="no-filter rounded-end" style="width: 100px">@L("Actions")</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Views/Checklists/_CreateModal.cshtml", Model)
+
+<div class="modal fade" id="ChecklistEditModal" tabindex="-1" role="dialog" aria-labelledby="ChecklistEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>

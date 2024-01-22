@@ -1,0 +1,55 @@
+@using Abp.Authorization.Users
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.AcademicTerm
+@model EditAcademicTermModalViewModel
+@{
+    Layout = null;
+}
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditAcademicYear")))
+<form id="academicTermEditForm" name="academicTermEditForm" role="form" class="form-horizontal">
+    <input type="hidden" name="Id" value="@Model.AcademicTerm.Id" />
+    <div class="modal-body">
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("Name")</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="Name" value="@Model.AcademicTerm.Name" required minlength="2">
+            </div>
+        </div>
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("Description")</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="Description" value="@Model.AcademicTerm.Description" required minlength="2">
+            </div>
+        </div>
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("StartDate")</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control mobipicker" name="StartDate" required value="@Model.AcademicTerm.StartDate" required>
+            </div>
+        </div>
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("EndDate")</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control mobipicker" name="EndDate" value="@Model.AcademicTerm.EndDate" required>
+            </div>
+        </div>
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("AcademicYear")</label>
+            <div class="col-md-9">
+                <select class="select2 form-control" name="AcademicYearId" required data-service="AcademicYear" data-selected-text="@Model.AcademicTerm.AcademicYear.Name" data-selected-value="@Model.AcademicTerm.AcademicYearId"></select>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-md-3 col-form-label" for="IsPrimary">@L("Archived")</label>
+            <div class="col-md-9">
+                <input type="checkbox" name="Archived" value="@Model.AcademicTerm.Archived" id="Archived" />
+            </div>
+        </div>
+    </div>@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/AcademicTerm/_EditModal.js" asp-append-version="true"></script>
+
+<script>
+    new Helpers().setupSelects([AcademicYear], $('#academicTermEditForm'));
+</script>

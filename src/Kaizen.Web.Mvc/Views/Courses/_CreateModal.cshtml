@@ -1,0 +1,26 @@
+﻿@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.Course
+@model CourseListViewModel
+@{
+    Layout = null;
+}
+<div class="modal fade" id="CourseCreateModal" tabindex="-1" role="dialog" aria-labelledby="CourseCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            @await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("CreateNewCourse")))
+            <form name="courseCreateForm" role="form" class="form-horizontal">
+                    <div class="tab-content mt-4">
+                        <div role="tabpanel" class="tab-pane container active" id="create-user-details">
+                            <div class="mb-3 row required">
+                                <label class="col-md-3 col-form-label">@L("Name")</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="Name" required  minlength="2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+            </form>
+        </div>
+    </div>
+</div>

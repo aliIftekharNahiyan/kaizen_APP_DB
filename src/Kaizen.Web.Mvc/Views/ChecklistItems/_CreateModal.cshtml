@@ -1,0 +1,47 @@
+@using Abp.Authorization.Users
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.ChecklistItems
+
+@model ChecklistItemListViewModel
+@{
+    Layout = null;
+}
+
+<div class="modal fade" id="ChecklistItemCreateModal" tabindex="-1" role="dialog" aria-labelledby="ChecklistItemCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            @await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("CreateChecklistItem")))
+            <form name="checklistItemCreateForm" role="form" class="form-horizontal">
+                <div class="modal-body">
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">@L("Question")</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="Name" required minlength="2">
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="mb-12 row">
+                        <h5 class="mb-1">Options</h5>
+
+
+                        <ul class="todo-list js-todo-list list-group mb-3"></ul>
+                    </div>
+
+                    <div class="js-form mb-3">
+                        <div class="mb-12 row required">
+                            <input autofocus type="text" aria-label="Enter a new option" placeholder="Enter a new option" class="js-todo-input form-control">
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="#" class="btn btn-success add-item" value="Add Option">Add Option</a>
+                    </div>
+                </div>
+
+                @await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+            </form>
+        </div>
+    </div>
+</div>

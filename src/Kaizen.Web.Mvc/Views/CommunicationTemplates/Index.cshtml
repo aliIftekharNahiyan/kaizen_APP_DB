@@ -1,0 +1,83 @@
+@using Kaizen.Web.Startup
+@using Kaizen.Web.Models.CommunicationTemplate
+@model CommunicationTemplateListViewModel
+@{
+    ViewBag.Title = L("CommunicationsTemplates");
+    ViewBag.CurrentPageName = PageNames.CommunicationTemplates;
+}
+@section scripts
+{
+    <environment names="Development">
+        <script src="~/view-resources/Views/CommunicationTemplate/Index.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/CommunicationTemplate/Index.min.js" asp-append-version="true"></script>
+    </environment>
+
+    <script>
+        var communicationTemplate = new CommunicationTemplate();
+        communicationTemplate.setupGrid();
+    </script>
+}
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">@L("CommunicationsTemplates")</h4>
+
+                    <div class="page-title-right">
+                        <a href="~/CommunicationTemplates/Create" class="btn btn-primary">
+                            <i class="fa fa-plus-square"></i>
+                            @L("Create")
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- TODO: Filters here for template area / type-->
+                                </div>
+
+                                <div class="col-md-6">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            @await Html.PartialAsync("~/Views/CommunicationTemplates/Index.AdvancedSearch.cshtml")
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="CommunicationTemplateTable" class="table table-hover table-nowrap mb-0 align-middle table-check">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="rounded-start"></th>
+                                    <th>@L("Name")</th>
+                                    <th class="no-filter rounded-end" style="width: 100px">@L("Actions")</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

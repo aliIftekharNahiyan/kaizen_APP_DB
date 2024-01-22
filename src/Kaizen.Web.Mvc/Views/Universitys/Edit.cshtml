@@ -1,0 +1,131 @@
+﻿@using Abp.Authorization.Users;
+@using Kaizen.Web.Models.Course
+@using Kaizen.Web.Models.FundingBodys;
+@using Kaizen.Web.Models.SessionGroups;
+@using Kaizen.Web.Models.SupportTypes;
+@using Kaizen.Web.Models.Universitys;
+@using Kaizen.Web.Startup
+@using Kaizen.Web.Models.Users
+@model UniversityEditViewModel
+@{
+    ViewBag.Title = L("EditUniversity");
+    ViewBag.CurrentPageName = PageNames.Universities;
+}
+
+@section scripts
+{
+    <environment names="Development">
+        <script src="~/view-resources/Views/University/Edit.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/Course/Index.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/University/Edit.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/Course/Index.min.js" asp-append-version="true"></script>
+    </environment>
+
+    <script>
+
+    </script>
+}
+
+<input type="hidden" id="EntityType" value="@(typeof(Kaizen.Entities.Universitys.University))" />
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <h4>@Model.University.Name</h4>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" role="tab" href="#edit-university-details">
+                                <span class="d-none d-sm-block">@L("UniversityDetails")</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" role="tab" href="#edit-university-courses">
+                                <span class="d-none d-sm-block">@L("Courses")</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content p-3 text-muted">
+                        <div role="tabpanel" class="tab-pane active" id="edit-university-details">
+                            <form asp-asp-controller="Universitys" asp-action="Edit" role="form" class="form-horizontal">
+                                <input type="hidden" name="Id" asp-for="@Model.University.Id" />
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3 row">
+                                            <label class="col-md-3 col-form-label" for="name">@L("Name")</label>
+                                            <div class="col-md-9 required">
+                                                <input asp-for="University.Name" type="text" class="form-control" required minlength="2" maxlength="@AbpUserBase.MaxNameLength">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="float-end">
+                                    <button type="button" class="btn btn-danger">@L("Cancel")</button>
+                                    <button type="submit" class="btn btn-primary ml-1">@L("Save")</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="edit-university-courses">
+                            <section class="content-header">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#CourseCreateModal" class="btn btn-primary">
+                                                <i class="fa fa-plus-square"></i>
+                                                @L("Create")
+                                            </a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            @await Html.PartialAsync("~/Views/Courses/Index.AdvancedSearch.cshtml")
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <div class="table-responsive">
+                                <table id="CoursesTable" class="table table-hover table-nowrap mb-0 align-middle table-check">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th class="rounded-start"></th>
+                                            <th>@L("Name")</th>
+                                            <th style="width: 100px" class="rounded-end"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@* @await Html.PartialAsync("~/Views/Address/_CreateModal.cshtml", Model.Addresses) *@
+@await Html.PartialAsync("~/Views/Courses/_CreateModal.cshtml", new CourseListViewModel())
+
+<div class="modal fade" id="AddressEditModal" tabindex="-1" role="dialog" aria-labelledby="AddressEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+

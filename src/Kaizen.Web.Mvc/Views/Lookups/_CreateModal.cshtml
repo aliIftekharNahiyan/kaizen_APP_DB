@@ -1,0 +1,53 @@
+@using Abp.Authorization.Users
+@using Kaizen.Entities.Lookups.Dto;
+@using Kaizen.Enums;
+@using Kaizen.Web.Models.Common.Modals;
+@model CreateLookupDto
+@{
+    Layout = null;
+}
+
+<div class="modal fade" id="LookupCreateModal" tabindex="-1" role="dialog" aria-labelledby="LookupCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            @await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Create Lookup"))
+            <form name="lookupCreateForm" role="form" class="form-horizontal">
+                <div class="modal-body">
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Lookup</label>
+                        <div class="col-md-9">
+                            <select class="select2 form-control" name="LookTypeId" asp-items="@(EnumHelper.GetEnumSelectListWithDescription<CommonEnum.LookupType>("Select an option","0"))" required></select>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="Name" required minlength="3" maxlength="250">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Short Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="SName" required minlength="3" maxlength="250">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-md-3 col-form-label">Description</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="Description" minlength="3" maxlength="1024">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-md-3 col-form-label">Is Active</label>
+                        <div class="col-md-9">
+                            @*<input class="form-check-input" id="IsActive" name="IsActive" type="checkbox" asp-for="@Model.IsActive" />*@
+                            @*<input asp-for="IsActive">*@
+                           @* <input class="form-check-input" asp-for="@Model.IsActive" />*@
+                            @Html.CheckBox("IsActive",new {@class="form-check-input" })
+                        </div>
+                    </div>
+                </div>@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+            </form>
+        </div>
+    </div>
+</div>

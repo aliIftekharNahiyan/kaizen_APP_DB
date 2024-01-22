@@ -1,0 +1,60 @@
+@using Abp.Authorization.Users
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.SessionGroups
+@model SessionGroupListViewModel
+@{
+    Layout = null;
+}
+<div class="modal fade" id="SessionGroupCreateModal" tabindex="-1" role="dialog" aria-labelledby="SessionGroupCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            @await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Create Session Group"))
+            <form name="sessionGroupCreateForm" role="form" class="form-horizontal">
+                <div class="modal-body">
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="Name" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-md-3 col-form-label">Description</label>
+                        <div class="col-md-9">
+                            <textarea type="text" class="form-control" name="Description"></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Support Type</label>
+                        <div class="col-md-9">
+                            <select class="select2 form-control" name="SupportTypeId" required data-service="SupportType"></select>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Funding Body</label>
+                        <div class="col-md-9">
+                            <select class="select2 form-control" name="FundingBodyId" required data-service="FundingBody"></select>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Expiry Date</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control mobipicker" name="ExpiryDate" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Allocated Hours</label>
+                        <div class="col-md-9">
+                            <input type="number" class="form-control" name="AllocatedHours" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Allocated Budget</label>
+                        <div class="col-md-9">
+                            <input type="number" class="form-control" name="AllocatedBudget" required>
+                        </div>
+                    </div>
+                </div>@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+            </form>
+        </div>
+    </div>
+</div>

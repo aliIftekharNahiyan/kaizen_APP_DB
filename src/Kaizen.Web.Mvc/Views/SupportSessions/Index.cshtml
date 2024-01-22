@@ -1,0 +1,98 @@
+@using Kaizen.Web.Models.FundingBodys;
+@using Kaizen.Web.Models.SupportTypes;
+@using Kaizen.Web.Startup
+@using Kaizen.Web.Models.SupportSessions
+@model SupportSessionListViewModel
+@{
+    ViewBag.Title = L("Support Session");
+    ViewBag.CurrentPageName = PageNames.Customers;
+}
+@section scripts
+{
+    <environment names="Development">
+        <script src="~/view-resources/Views/SupportSession/Index.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/SupportTypes/Index.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/FundingBody/Index.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/SupportSession/Index.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/SupportTypes/Index.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/FundingBody/Index.min.js" asp-append-version="true"></script>
+    </environment>
+
+    <script>
+        new SupportSession().setupGrid();
+        new Helpers().setupSelects([SupportType, FundingBody]);
+    </script>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">Session Groups</h4>
+
+                    <div class="page-title-right">
+                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#SupportSessionCreateModal" class="btn btn-primary">
+                            <i class="fa fa-plus-square"></i>
+                            Create
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!--Use for bulk actions-->
+                        </div>
+                        <div class="col-md-6">
+                            @await Html.PartialAsync("~/Views/SupportSessions/Index.AdvancedSearch.cshtml")
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="SupportSessionTable" class="table table-hover table-nowrap mb-0 align-middle table-check">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="rounded-start"></th>
+                                    <th>Session Group</th>
+                                    <th>Support Type</th>
+                                    <th>Funding Body</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Session Type</th>
+                                    <th>Status</th>
+                                    <th class="no-filter rounded-end" style="width: 100px"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Views/SupportSessions/_CreateModal.cshtml", Model)
+@await Html.PartialAsync("~/Views/SupportTypes/_CreateModal.cshtml", new SupportTypeListViewModel())
+@await Html.PartialAsync("~/Views/FundingBodys/_CreateModal.cshtml", new FundingBodyListViewModel())
+
+<div class="modal fade" id="SupportSessionEditModal" tabindex="-1" role="dialog" aria-labelledby="SupportSessionEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>

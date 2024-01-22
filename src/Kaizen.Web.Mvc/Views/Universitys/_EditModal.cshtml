@@ -1,0 +1,20 @@
+@using Abp.Authorization.Users
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.Universitys
+@model EditUniversityModalViewModel
+@{
+    Layout = null;
+}
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditUniversity")))<form name="universityEditForm" role="form" class="form-horizontal">
+    <input type="hidden" name="Id" value="@Model.University.Id" />
+    <div class="modal-body">
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("Name")</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="Name" value="@Model.University.Name" required minlength="2">
+            </div>
+        </div>
+    </div>@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/University/_EditModal.js" asp-append-version="true"></script>

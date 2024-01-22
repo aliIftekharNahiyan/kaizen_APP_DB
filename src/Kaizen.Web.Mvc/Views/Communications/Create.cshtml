@@ -1,0 +1,109 @@
+﻿@using Abp.Authorization.Users;
+@using Kaizen.Entities.CommunicationTemplates;
+@using Kaizen.Entities.Communications;
+@using Kaizen.Web.Models.Communication;
+@using Kaizen.Web.Models.CommunicationTemplate;
+@using Kaizen.Web.Startup
+@model CreateCommunicationViewModel
+@{
+    ViewBag.Title = L("EditUser");
+    ViewBag.CurrentPageName = PageNames.Users;
+}
+
+ <!-- quill css -->
+<link href="~/assets/libs/quill/quill.core.css" rel="stylesheet" type="text/css" />
+<link href="~/assets/libs/quill/quill.bubble.css" rel="stylesheet" type="text/css" />
+<link href="~/assets/libs/quill/quill.snow.css" rel="stylesheet" type="text/css" />
+
+@section scripts
+{
+    <environment names="Development">
+        <script src="~/view-resources/Views/Communication/Index.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/Communication/Index.min.js" asp-append-version="true"></script>
+    </environment>
+
+    <script src="~/assets/libs/quill/quill.min.js"></script>
+
+    <script>
+        var communication = new Communication();
+        communication.setupEditor();
+
+        
+    </script>
+}
+
+<input type="hidden" id="EntityType" value="@(typeof(Communication))" />
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <h4>Create Communication</h4>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    Here you can select a custom communication template, along with the people it should go to. This can be modified before you send it in the HTML editor.
+                </div>
+                <div class="card-body">
+                     <form asp-asp-controller="Communication" asp-action="Create" role="form" class="form-horizontal">
+                        <div class="mb-3 row">
+                            <label class="col-md-3 col-form-label" asp-for="ContentTemplateId"></label>
+                            <div class="col-md-9">
+                                <select class="select2 form-control" asp-for="ContentTemplateId" asp-items="@Model.ContentTemplates" data-htmlelement="snow-editor">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="headerFooter">
+                            <div class="mb-3 row">
+                                <label class="col-md-3 col-form-label" asp-for="HeaderTemplateId"></label>
+                                <div class="col-md-9">
+                                    <select class="select2 form-control template-picker" asp-for="HeaderTemplateId" asp-items="@Model.HeaderTemplates" data-htmlelement="snow-editor-header">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-md-3 col-form-label" asp-for="FooterTemplateId"></label>
+                                <div class="col-md-9">
+                                    <select class="select2 form-control template-picker" asp-for="FooterTemplateId" asp-items="@Model.FooterTemplates" data-htmlelement="snow-editor-footer">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="editor" id="snow-editor-header" style="height: 200px;"></div>
+
+                        <div class="mt-2">
+                            <div class="editor" id="snow-editor" style="height: 500px;"></div>
+                        </div>
+
+                        <div class="mt-2">
+                            <div class="editor" id="snow-editor-footer" style="height: 200px;"></div>
+                        </div>
+
+                        <div class="float-end mt-3">
+                            <a href="~/Communication" class="btn btn-danger">@L("Cancel")</a>
+                            <button type="submit" class="btn btn-primary ml-1">@L("Save")</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

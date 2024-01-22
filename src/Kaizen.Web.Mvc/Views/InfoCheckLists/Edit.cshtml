@@ -1,0 +1,734 @@
+@using Abp.Authorization.Users
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.InfoCheckList
+@model InfoCheckListEditViewModel
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <h4>Edit</h4>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <form asp-controller="InfoCheckLists" asp-action="Edit" method="post" role="form" class="form-horizontal">
+                <input type="hidden" class="form-control" asp-for="InfoCheckList.Id">
+                <input type="hidden" class="form-control" asp-for="InfoCheckList.UserId">
+                <div class="">
+                    <div>
+                        Confidential Background Information Questionnaire
+
+                        Please complete this form to the best of your ability, answering as many questions as you can. This will be extremely useful for your assessor to be able to understand your strengths and areas of difficulty that have affected you within your studies and throughout your personal life.
+
+                        This form, along with all of its contents, will be treated confidentially and will only be shared with your assessor and your Institution should we have gained your approval to do so.
+
+                    </div>
+                    <h1>Personal Details</h1>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">@L("FirstName")</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.FirstName" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">@L("Surname")</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.Surname" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">@L("Gender")</label>
+                        <div class="col-md-9">
+                            <select class="select2 form-control" asp-items="Html.GetEnumSelectList<Kaizen.Enums.Gender>()" required asp-for="InfoCheckList.Gender"></select>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Preferred Pronoun(s)</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.PreferredPronoun" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Date of Birth</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control mobipicker" asp-for="InfoCheckList.DateOfBirth" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Age Now</label>
+                        <div class="col-md-9">
+                            <input type="number" class="form-control" asp-for="InfoCheckList.AgeNow" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Address</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.Address" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Telephone Number</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.TelephoneNumber" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Email Address</label>
+                        <div class="col-md-9">
+                            <input type="email" class="form-control" asp-for="InfoCheckList.Email" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">University Name </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.UniversityName" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Name of Qualification </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.NameOfQualification" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Course Start Date</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control mobipicker" asp-for="InfoCheckList.CourseStartDate" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Course End Date</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control mobipicker" asp-for="InfoCheckList.CourseEndDate" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Are you a UK, EU or Overseas student?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.StudentFromUkOrOverseas" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Preferred Language  </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.PreferredLanguage" required minlength="2">
+                        </div>
+                    </div>
+                    <div>
+                        Health and Developmental History
+                        Specific Learning Differences are often developmental in nature – that means that they have been present throughout your life. We will be looking at how you have already developed skills and look at the impact any condition has had on your development.
+                        Anything that you write here will be discussed with you at the assessment, and you will have the opportunity to say if you are happy with the details as they are then summarised in your report. Please give as much detail with supporting examples as you can.
+                    </div>
+                    <h1>Vision, Hearing and Health</h1>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Please give the date of your last eye test</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control mobipicker" asp-for="InfoCheckList.DateOfLastEyeTest" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Do you wear glasses/contact lenses? If so for what?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.WearGlassesLenses" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Have you ever been prescribed tinted lenses or overlays?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.PrescribedTintedLens" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Date of last hearing test</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control mobipicker" asp-for="InfoCheckList.DateOfLastHearingTest" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Do you have any hearing difficulties now or have you had in the past? </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.AnyHearingDifficulties" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Have you had any serious medical conditions in the past? </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.AnySeriousMedicalConditionsInThePast" required minlength="2">
+                        </div>
+                    </div>     <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Are you currently healthy?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.AreYouCurrentlyHealthy" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Do you have or have you had any well-being/mental health difficulties?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.AnyMentalHealtDifficulties" required minlength="2">
+                        </div>
+                    </div>
+                    <h1>Speech and Language</h1>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Were you late learning to talk? </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.WereYouLateLearningToTalk" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Did you have speech therapy or help at school to develop your spoken language?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.HadSpeechTherapies" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Do you still find it difficult to say any sounds?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.DifficultToSayAnySounds" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Do you find it hard to pronounce words now? </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.DoYouHardPronounceWordsNow" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Can you express your ideas fluently now?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.CanExpressIdeasFluently" required minlength="2">
+                        </div>
+                    </div>
+                    <h1>Physical Development</h1>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Did you learn skills such as walking, running, jumping, throwing and catching a ball in line with your peers? </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.LearnSkillsWalkingRunning" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Could you swim and ride a bicycle without difficulty?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.CanSwimAndRideBicycle" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Do you do any sporting activities now? Which ones?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.AnySportActivitiesNow" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Did you feel clumsy as a child, bump into things or trip up more than other children?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.ClumsyAsAChild" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Did you learn skills using your hands such as tying shoe laces, using cutlery in line with your peers?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.SkillsUsingYourHands" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Did you find it easy to develop neat handwriting or to write as fast as other children?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.FindEasyToDevelopNeatHandwriting" required minlength="2">
+                        </div>
+                    </div>
+                    <h1>
+                        Family History of Specific Learning Differences
+                    </h1>
+                    <div>Specific Learning Differences often run in families, but for a range of reasons may never have been formally diagnosed or supported. Providing detailed answers to these questions is important for your assessor to recognise possible family histories but the individuals will not be referred to directly when your report is written. </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Have you received any previous assessment/diagnosis? If yes, please give brief information.</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.ReceivedAnyPreviousAssesments" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Have any close family members been formally diagnosed with or supported for specific learning differences such as dyslexia, dyspraxia, ADHD or autism?  </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.CloseFamilyMembersWithLearningDifferences" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">If you answered No to the question above have any close family members had difficulty developing literacy or numeracy skills or found formal learning to be challenging?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.CloseFamilyMembersWithDifficultyDevelopingLiteracy" required minlength="2">
+                        </div>
+                    </div>
+                    <h1>Linguistic History</h1>
+                    <div>These questions will help your assessor understand the impact that learning languages other than English may have had on your current studies. Please provide us with as much detail as you can. </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Have you always lived in the UK?  If not which other countries have you lived in and at what ages?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.HaveAlwaysLivedInUK" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Is English the language that you speak everyday with your family, friend, at school etc?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.IsEnglishEverydayLanguage" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Do you regularly speak any other languages?  If so when and for how long?  Which language do you think of as your dominant/most comfortable language to use?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.RegularySpeakAnyOtherLanguage" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Were your lessons at school/university always taught in English? If not which other languages were used and at what ages?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.WereSchoolLessionsInEnglish" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">If you were taught in other languages did you find it easy to learn to read and write in those languages?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.FindEasyToReadWriteOtherLanguages" required minlength="2">
+                        </div>
+                    </div>
+                    <h1>Education and Employment History</h1>
+                    <div>We know that specific learning differences can have an impact on people in education as well as in the workplace.  Please give examples of areas where you feel you have strengths or strategies that you have, as well as the things you find harder.</div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Did you enjoy going to school/college?  Why? </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.EnjoyGoingToSchool" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">What were your favourite subjects and which did you like least? Why?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.FavouriteSubjects" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">How did you find learning to read?  Did you receive any extra help, if so at what ages?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.HowDidYouFindLearningToRead" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">How did you get on remembering or understanding what you read?  Did you receive any extra help, if so at what ages?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.HowDidYouGetRememberingWhatRead" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">How did you find learning to spell?  Did you have any extra help, if so at what ages?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.HowDidFindLearningToSpell" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">How did you get on learning to write essays?  Did you receive any extra help, if so at what ages?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.HowDidFindWritingEssays" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">How did you get on developing numeracy skills?  Did you receive any extra help, if so at what ages?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.HowDidOnDevelopingNumeracySkills" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Did you find it hard to complete examinations in time?  Did you have any access arrangements in examinations such as extra time, typing, being in a separate room?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.HardToCompleteExaminationsInTime" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Did you have a Statement of Special Educational Need or an Education Health Care Plan (EHCP) at school or college?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.DidYouHaveSSEN" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Did you attend school regularly?  </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.AttendSchoolRegularly" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Did you have any prolonged periods of absence?  If so why and at what ages? </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.AnyProlongedPeriodsOfAbsence" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Did you change schools more often than at the expected times?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.DidChangedSchoolsOften" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Please give the results of your examinations at A level/BTEC and at university if relevant.  If you resat any please make this clear.</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.ResultsOfALevelExaminations" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">What jobs have you done?  Include volunteering and internships if relevant.</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.JobsDone" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">What did you enjoy about these jobs and what was challenging for you?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.WhatEnjoyedOnJobsDone" required minlength="2">
+                        </div>
+                    </div>
+                    <h1>Current Situation</h1>
+                    <div>
+                        You have explained a great deal about your background.  This is now your chance to tell your assessor what is concerning you most in relation to your current studies and why you have come forward for an assessment now. This information is very important for your assessor to enable them to understand more and make sure they are well prepared for your assessment, directing the time to those areas that concern you.
+                        Please do make sure that you tell the assessor about what you are good at and the strategies that you are already using to overcome any barriers that you have as well as what you find harder.
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Please explain why you have requested an assessment now and what you hope to get out of this process.</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.WhyHaveRequestedAssesment" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">How would you summarise your strengths as a person, academically and if relevant at work?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.YourStrengthsAsPerson" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Please explain your current strengths, strategies and difficulties with reading, writing, planning essays and spelling.</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.CurrentStrengthsWithReading" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Please explain your current strengths, strategies and difficulties with tasks such as planning and organising your time, remembering what you need.</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.CurrentStrengthsWithTasksAsPlanning" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Please explain your current strengths, strategies and difficulties with memory, attention and concentration.  Have these changed since you were a child?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.CurrentStrengthsWithMemory" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Please explain your current strengths, strategies and difficulties with social interaction and communication skills.</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.CurrentStrengthsWithSocialInteraction" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Please explain your current strengths, strategies and difficulties with numeracy.</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.CurrentStrengthsWithNumeracy" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">Do you drive a car, ride a bicycle or travel on public transport often?  If so, how good is your sense of direction, ability to learn your route to a new place or building, remember left and right, get to places on time?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.DriveACar" required minlength="2">
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">In your free time what do you like to do?</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.FreeTimeActivities" required minlength="2">
+                        </div>
+                    </div>
+                    <h1>Visual Difficulties Questionnaire</h1>
+                    <div>
+                        Specific learning difficulties are caused by differences in the way that the brain processes information – which can affect reading and writing skills.  However, reading and writing might also be affected by other difficulties, such as in eyesight and vision, so we need to gather information about any problems that you experience in this area.
+                    </div>
+                    <div>
+                        Response categories
+                        Always = every day Often = several times a week but not necessarily every day
+                        Sometimes = 2-3 times a month.  Rarely = only once every few months / a year.
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">1. Do you get headaches when you read? </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.HeadachesReading">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">2. Does reading make your eyes feel sore, gritty or watery?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.ReadingSoreEyes">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">3. Does reading make you feel tired or sleepy?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.ReadingTired">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">4. Do you become restless or fidgety or distracted when reading?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.DistractedWhenReading">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">5. Do you become less comfortable the longer you read? </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.LessComfortableLongerReading">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">6. When do you prefer dim light to brighter light for reading?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.PrefferDimLights">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">7. Does reading from white paper seem too bright or glaring?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.ReadingFromWhitePaperBright">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">8. Do parts of the white page between the words form patterns when you read?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.ReadingFromWhitePageFormsPatterns">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">9. Does the print or background shimmer or appear coloured as you read? </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.DoesBackgorundShimmer">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">10. Does print appear to jitter or move on the page as you read?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.DoesPrintApoearJitter">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">11. Do you screw your eyes up when reading?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.ScrewEyesWhenReading">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">12. Do you rub your eyes to relieve the strain when you are reading?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.RubEyesWhenReading">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">13. Do you move your eyes around or blink to keep text clear when you are reading?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.MoveEyesAndBlinkWhenReading">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">14. Do you use a marker or your finger to stop you losing the place when you read?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.UseMarkerOrFingerWhenReading">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">15. Do you cover or close one eye when reading?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.CoverOneEyeWhenReading">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">16. Do you lose your place when reading?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.LosePlaceWHenReading">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">17. Do you re-read or skip words or lines when reading?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.RereadOrSkipWhenReading">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">18. Does text appear blurred, or go in and out of focus, when you read?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.TextBlurredWhenReading">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">19. Do objects in the distance appear more blurred after you have been reading?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.DistanceObjectsBlurred">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">20. Do the words, page or book appear double when you are reading?  </label>
+                        <div class="col-md-9">
+                            <div class="col-md-9">
+                                <select class="select2 form-control" required asp-for="InfoCheckList.DoubleWordsWhenReading">
+                                    @foreach (var item in Enum.GetValues(typeof(Kaizen.Enums.QuestionAnswer)))
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">If there is any other information or comments that you would like your assessor to know please add these here.  </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="InfoCheckList.AdditionalInformation" required minlength="2">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-danger close-button" asp-action="Index">@L("Cancel")</button>
+                    <button type="submit" class="btn btn-primary save-button">@L("Save")</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

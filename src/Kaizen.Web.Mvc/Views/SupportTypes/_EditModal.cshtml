@@ -1,0 +1,46 @@
+﻿@using Abp.Authorization.Users
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.Users
+@model EditSupporTypeModalViewModel
+@{
+    Layout = null;
+}
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditSupportType")))
+<form name="SupportTypeForm" role="form" class="form-horizontal">
+    <input type="hidden" name="Id" value="@Model.SupportType.Id" />
+    <div class="modal-body">
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label" for="name">@L("Name")</label>
+            <div class="col-md-9">
+                <input id="name" type="text" class="form-control" name="Name" value="@Model.SupportType.Name" required>
+            </div>
+        </div>
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label" for="surname">@L("Description")</label>
+            <div class="col-md-9">
+                <textarea id="description" type="text" class="form-control" name="Description" value="@Model.SupportType.Description"></textarea>
+            </div>
+        </div>
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("Cost")</label>
+            <div class="col-md-9">
+                <input type="number" class="form-control" name="Cost" required value="@Model.SupportType.Cost">
+            </div>
+        </div>
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("Margin")</label>
+            <div class="col-md-9">
+                <input type="number" class="form-control" name="Margin" required value="@Model.SupportType.Margin">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-md-3 col-form-label">@L("SellPrice")</label>
+            <div class="col-md-9">
+                <span id="sellPriceCalculated">@Model.SupportType.SellPrice</span>
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/SupportTypes/_EditModal.js" asp-append-version="true"></script>

@@ -1,0 +1,24 @@
+@using Abp.Authorization.Users
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.Universitys
+@model UniversityListViewModel
+@{
+    Layout = null;
+}
+<div class="modal fade" id="UniversityCreateModal" tabindex="-1" role="dialog" aria-labelledby="UniversityCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            @await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("CreateUniversity")))
+            <form name="universityCreateForm" role="form" class="form-horizontal">
+                <div class="modal-body">
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">@L("Name")</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="Name" required minlength="2">
+                        </div>
+                    </div>
+                </div>@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+            </form>
+        </div>
+    </div>
+</div>

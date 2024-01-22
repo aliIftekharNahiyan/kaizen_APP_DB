@@ -1,0 +1,31 @@
+@using Abp.Authorization.Users
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.RegionLocations
+@model EditRegionLocationModalViewModel
+@{
+    Layout = null;
+}
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditRegionLocation")))
+<form name="regionLocationEditForm" role="form" class="form-horizontal" id="regionLocationForm">
+    <input type="hidden" name="Id" value="@Model.RegionLocation.Id" />
+    <div class="modal-body">
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("Region")</label>
+            <div class="col-md-9">
+                <select class="select2 form-control" asp-for="RegionLocation.RegionId" data-service="Region" data-selected-text="@Model.RegionLocation.Region?.Name" data-selected-value="@Model.RegionLocation.RegionId"></select>
+            </div>
+        </div>
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("Name")</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="Name" value="@Model.RegionLocation.Name" required minlength="2">
+            </div>
+        </div>
+    </div>@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/RegionLocation/_EditModal.js" asp-append-version="true"></script>
+
+<script>
+    new Helpers().setupSelects([Company], $('#regionLocationForm'));
+</script>

@@ -1,0 +1,123 @@
+﻿@using Abp.Authorization.Users;
+@using Kaizen.Entities.CommunicationTemplates;
+@using Kaizen.Web.Models.CommunicationTemplate;
+@using Kaizen.Web.Startup
+@model CommunicationTemplateEditViewModel
+@{
+    ViewBag.Title = L("CommunicationTemplates");
+    ViewBag.CurrentPageName = PageNames.CommunicationTemplates;
+}
+
+ <!-- quill css -->
+<link href="~/assets/libs/quill/quill.core.css" rel="stylesheet" type="text/css" />
+<link href="~/assets/libs/quill/quill.bubble.css" rel="stylesheet" type="text/css" />
+<link href="~/assets/libs/quill/quill.snow.css" rel="stylesheet" type="text/css" />
+
+@section scripts
+{
+    <environment names="Development">
+        <script src="~/view-resources/Views/CommunicationTemplate/Index.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/CommunicationTemplate/Index.min.js" asp-append-version="true"></script>
+    </environment>
+
+    <script src="~/assets/libs/quill/quill.min.js"></script>
+
+    <script>
+        var communicationTemplate = new CommunicationTemplate();
+        communicationTemplate.setupEditor();
+    </script>
+}
+
+<input type="hidden" id="EntityType" value="@(typeof(CommunicationTemplate))" />
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <h4>Edit @Model.CommunicationTemplate.Name</h4>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                     <form asp-asp-controller="CommunicationTemplates" asp-action="Edit" role="form" class="form-horizontal">
+                         <input type="hidden" asp-for="CommunicationTemplate.Id" />
+                         <input type="hidden" asp-for="CommunicationTemplate.HTMLContent" />
+
+                       
+
+                         <div class="mb-3 row">
+                            <label class="col-md-3 col-form-label" asp-for="CommunicationTemplate.Name"></label>
+                            <div class="col-md-9 required">
+                                <input class="form-control" asp-for="CommunicationTemplate.Name" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label class="col-md-3 col-form-label" asp-for="CommunicationTemplate.TemplateType"></label>
+                            <div class="col-md-9 required">
+                                <select class="select2 form-control" asp-for="CommunicationTemplate.TemplateType">
+                                    <option value="1">Content</option>
+                                    <option value="0">Header</option>
+                                    <option value="2">Footer</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="headerFooter">
+                            <div class="mb-3 row">
+                                <label class="col-md-3 col-form-label" asp-for="CommunicationTemplate.HeaderTemplateId"></label>
+                                <div class="col-md-9">
+                                    <select class="select2 form-control template-picker" asp-for="CommunicationTemplate.HeaderTemplateId" asp-items="@Model.HeaderTemplates" data-htmlelement="htmlHeader">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-md-3 col-form-label" asp-for="CommunicationTemplate.FooterTemplateId"></label>
+                                <div class="col-md-9">
+                                    <select class="select2 form-control template-picker" asp-for="CommunicationTemplate.FooterTemplateId" asp-items="@Model.FooterTemplates" data-htmlelement="htmlFooter">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <p>
+                                <a href="/CommunicationTemplates/DownloadHTML/@Model.CommunicationTemplate.Id" target="_blank">Click here to download the HTML file for this template.</a>
+                            </p>
+
+                            <p>
+                                Upload a HTML file here: <input asp-for="HTMLFileUpload" />
+                            </p>
+                        </div>
+
+                        <div id="htmlHeader"></div>
+
+                        <div id="snow-editor" style="height: 500px;">@Html.Raw(Model.CommunicationTemplate.HTMLContent)</div>
+
+                         <div id="htmlFooter"></div>
+
+                        <div class="float-end mt-3">
+                            <a href="~/CommunicationTemplates" class="btn btn-danger">@L("Cancel")</a>
+                            <button type="submit" class="btn btn-primary ml-1">@L("Save")</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

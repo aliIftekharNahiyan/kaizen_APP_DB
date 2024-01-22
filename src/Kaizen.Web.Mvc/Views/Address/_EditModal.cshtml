@@ -1,0 +1,68 @@
+﻿@using Abp.Authorization.Users
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.Addresses
+@model EditAddressModalViewModel
+@{
+    Layout = null;
+}
+
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditAddress")))
+<form name="addressCreateForm" role="form" class="form-horizontal">
+    <input type="hidden" name="Id" value="@Model.Address.Id" />
+    <div class="modal-body">
+
+        <div role="tabpanel" class="tab-pane container active" id="create-address-details">
+            <div class="mb-3 row required">
+                <label class="col-md-3 col-form-label">@L("Name")</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="Name" value="@Model.Address.Name" required minlength="2">
+                </div>
+            </div>
+            <div class="mb-3 row required">
+                <label class="col-md-3 col-form-label">@L("AddressLine1")</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="Line1" value="@Model.Address.Line1" required minlength="2">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">@L("AddressLine2")</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="Line2" value="@Model.Address.Line2">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">@L("AddressLine3")</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="Line3" value="@Model.Address.Line3">
+                </div>
+            </div>
+            <div class="mb-3 row required">
+                <label class="col-md-3 col-form-label">@L("City")</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="City" value="@Model.Address.City" required>
+                </div>
+            </div>
+            <div class="mb-3 row required">
+                <label class="col-md-3 col-form-label">@L("County")</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="County" id="County" required value="@Model.Address.County">
+                </div>
+            </div>
+            <div class="mb-3 row required">
+                <label class="col-md-3 col-form-label">@L("Postcode")</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="Postcode" id="Postcode" required value="@Model.Address.Postcode">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label" for="IsPrimary">@L("IsPrimary")</label>
+                <div class="col-md-9">
+                    <input type="checkbox" name="IsPrimary" value="true" id="IsPrimary" value="@Model.Address.IsPrimary" />
+                </div>
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/Address/_EditModal.js" asp-append-version="true"></script>

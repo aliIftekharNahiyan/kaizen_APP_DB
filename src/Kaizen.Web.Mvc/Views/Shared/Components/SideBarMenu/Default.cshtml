@@ -1,0 +1,42 @@
+﻿@using Kaizen.Web.Views.Shared.Components.SideBarMenu
+@model SideBarMenuViewModel
+@{ 
+    var orderedMenuItems = Model.MainMenu.Items.Where(x => x.IsVisible).ToList();
+}
+<div class="navbar-brand-box">
+    <a href="index.html" class="logo logo-dark">
+        <span class="logo-sm">
+            <img src="~/assets/images/TIG ICON.png" alt="" height="22">
+        </span>
+        <span class="logo-lg">
+            <img src="~/assets/images/TIG LOGO 1.png" alt="" height="40">
+        </span>
+    </a>
+
+    <a href="index.html" class="logo logo-light">
+        <span class="logo-lg">
+            <img src="~/assets/images/TIG LOGO 2.png" alt="" height="40">
+        </span>
+        <span class="logo-sm">
+            <img src="~/assets/images/TIG ICON.png" alt="" height="25">
+        </span>
+    </a>
+</div>
+
+<button type="button" class="btn btn-sm px-3 font-size-16 header-item vertical-menu-btn">
+    <i class="fa fa-fw fa-bars"></i>
+</button>
+
+<div data-simplebar class="sidebar-menu-scroll">
+    <div id="sidebar-menu">
+        <ul class="metismenu list-unstyled" id="side-menu">
+            @{
+                foreach (var item in orderedMenuItems)
+                {
+                    @await Html.PartialAsync("Components/SideBarMenu/_MenuItem", item)
+                }
+            }
+        </ul>
+    </div>
+
+</div>

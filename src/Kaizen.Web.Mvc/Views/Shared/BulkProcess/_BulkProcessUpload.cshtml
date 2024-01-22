@@ -1,0 +1,77 @@
+﻿@using Kaizen.Web.Models.BulkProcess
+@using Newtonsoft.Json
+@model BulkProcessViewModel
+
+<div class="modal fade" id="@(Model.BulkProcessType.ToString())UploadModal" tabindex="-1" role="dialog" aria-labelledby="@(Model.BulkProcessType.ToString())UploadLabel" data-backdrop="static">
+	<div class="modal-dialog modal-lg" role="document">
+		@Html.AntiForgeryToken()
+       
+
+		<div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Bulk Create</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+			    <div class="alert alert-info">
+				    Please only upload CSV files.
+                    <p>
+                        <a href="~/BulkProcess/DownloadTemplate?BulkProcessType=@Model.BulkProcessType">Click here to download the template for this action.</a>
+                    </p>
+			    </div>
+
+                <div id="uploadMessage"></div>
+                <div id="uploadErrorMessage" style="display: none; max-height: 400px; overflow: auto">
+                    <p class="message alert alert-danger"></p>
+                    <div class="table-responsive">
+                        <table id="bulkErrorsTable" class="table table-hover table-nowrap mb-0 align-middle table-check">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Row</th>
+                                    <th>Column</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <form action="#" class="droparea text-center" id="bulk-dropzone">
+                        <input id="fileUpload" name="file" type="file" style="display: none">
+                        <div class="dropzone">
+                            <div class="fallback" style="display: none">
+                           
+                            </div>
+                            <div class="dz-message needsclick">
+                                <div class="mb-3">
+                                    <i class="display-4 text-muted uil uil-cloud-upload"></i>
+                                </div>
+
+                                <h4>Click here to upload file and click process file to upload.</h4>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button id="btnUpload" type="button" class="btn btn-primary">Process File</button>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-danger close-button" data-bs-dismiss="modal">@L("Cancel")</button>
+            </div>
+		</div>
+       
+
+	</div>
+</div>
+
+<script>
+	window.addEventListener("load", (event) => {
+		new BulkProcess('@Model.BulkProcessType', '#@(@Model.ElementId)', '#@(Model.BulkProcessType.ToString())Upload', @Model.TableId).setup();
+	});
+</script>

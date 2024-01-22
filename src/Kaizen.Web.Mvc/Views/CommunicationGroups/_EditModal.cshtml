@@ -1,0 +1,45 @@
+@using Abp.Authorization.Users
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.CommunicationGroup;
+@model EditCommunicationGroupModalViewModel
+@{
+    Layout = null;
+}
+
+<form id="communicationGroupEditForm" name="communicationGroupEditForm" role="form" class="form-horizontal">
+    <input type="hidden" name="Id" value="@Model.CommunicationGroup.Id" />
+    <div class="modal-body">
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("Name")</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="Name" value="@Model.CommunicationGroup.Name" required minlength="2">
+            </div>
+        </div>
+
+         <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("Description")</label>
+            <div class="col-md-9">
+                <textarea type="text" class="form-control" name="Description" required rows="2" asp-for="@Model.CommunicationGroup.Description"></textarea>
+            </div>
+        </div>
+
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">Users</label>
+            <div class="col-md-9">
+                <select type="text" class="form-select" name="CommunicationGroup_Users" required id="CommunicationGroup_Users" multiple="multiple" asp-items="@Model.Users" asp-for="@Model.CommunicationGroup.UserList"></select>
+            </div>
+        </div>
+
+       
+    </div>@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/CommunicationGroup/_EditModal.js" asp-append-version="true"></script>
+
+<script>
+    $(function () {
+        $('#communicationGroupEditForm #CommunicationGroup_Users').select2({
+            dropdownParent: $('#CommunicationGroupEditModal')
+        });
+    });
+</script>

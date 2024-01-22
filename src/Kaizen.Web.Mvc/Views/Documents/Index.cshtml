@@ -1,0 +1,81 @@
+﻿@using Kaizen.Web.Startup
+@using Kaizen.Web.Models.Users
+@model UserListViewModel
+@{
+    ViewBag.Title = L("Users");
+    ViewBag.CurrentPageName = PageNames.Users;
+}
+@section scripts
+{
+    <script src="~/libs/signature_pad/signature_pad.js" asp-append-version="true"></script>
+
+    <script>
+        const wrapper = document.getElementById("signature-pad");
+        const canvas = wrapper.querySelector("canvas");
+        const signaturePad = new SignaturePad(canvas, {
+            backgroundColor: 'rgb(255, 255, 255)'
+        });
+
+        function resizeCanvas() {
+            const ratio = Math.max(window.devicePixelRatio || 1, 1);
+
+            canvas.width = canvas.offsetWidth * ratio;
+            canvas.height = canvas.offsetHeight * ratio;
+            canvas.getContext("2d").scale(ratio, ratio);
+
+            signaturePad.fromData(signaturePad.toData());
+        }
+
+        window.onresize = resizeCanvas;
+
+        console.log('got here');
+        resizeCanvas();
+
+        $('.submit').on("click", function (e) {
+            e.preventDefault();
+
+            var dataurl = signaturePad.toDataURL('image/png');
+
+            $('#Signature').val(dataurl);
+
+            $('#documentForm').submit();
+        });
+    </script>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">@L("SignOff")</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form id="documentForm" asp-asp-controller="Documents" asp-action="Index" role="form" class="form-horizontal">
+                        <input type="hidden" name="Signature" id="Signature" />
+
+                        <div id="signature-pad" class="signature-pad">
+                            <div class="signature-pad--body">
+                              <canvas></canvas>
+                            </div>
+                            <div class="signature-pad--footer">
+                              <div class="description">Sign above</div>
+                            </div>
+                          </div>
+
+                         <input type="submit" class="btn btn-success mt-4 submit" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

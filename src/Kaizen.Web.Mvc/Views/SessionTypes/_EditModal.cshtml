@@ -1,0 +1,26 @@
+@using Abp.Authorization.Users
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.SessionTypes
+@model EditSessionTypeModalViewModel
+@{
+    Layout = null;
+}
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditSessionType")))<form name="sessionTypeEditForm" role="form" class="form-horizontal">
+    <input type="hidden" name="Id" value="@Model.SessionType.Id" />
+    <div class="modal-body">
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("Name")</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="Name" value="@Model.SessionType.Name" required minlength="2">
+            </div>
+        </div>
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("Description")</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="Description" value="@Model.SessionType.Description" required minlength="2">
+            </div>
+        </div>
+    </div>@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/SessionType/_EditModal.js" asp-append-version="true"></script>

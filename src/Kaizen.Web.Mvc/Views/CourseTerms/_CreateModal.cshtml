@@ -1,0 +1,38 @@
+﻿@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.CourseTerm
+@model CourseTermListViewModel
+@{
+    Layout = null;
+}
+<div class="modal fade" id="CourseTermCreateModal" tabindex="-1" role="dialog" aria-labelledby="CourseTermCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            @await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("CreateNewCourseTerm")))
+            <form name="courseTermCreateForm" role="form" class="form-horizontal">
+                    <div class="tab-content mt-4">
+                        <div role="tabpanel" class="tab-pane container active" id="create-user-details">
+                            <div class="mb-3 row required">
+                            <label class="col-md-3 col-form-label">@L("Length Of Term")</label>
+                                <div class="col-md-9">
+                                <input type="text" class="form-control" name="LengthOfTerm" required>
+                                </div>
+                            </div>
+                        <div class="mb-3 row required">
+                            <label class="col-md-3 col-form-label">@L("Start Date")</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control mobipicker1" name="StartDate" required>
+                            </div>
+                        </div>
+                        <div class="mb-3 row required">
+                            <label class="col-md-3 col-form-label">@L("End Date")</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control mobipicker1" name="EndDate" required>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                @await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+            </form>
+        </div>
+    </div>
+</div>

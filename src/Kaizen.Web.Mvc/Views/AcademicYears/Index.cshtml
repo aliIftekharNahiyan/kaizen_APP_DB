@@ -1,0 +1,91 @@
+@using Kaizen.Web.Models.Companies
+@using Kaizen.Web.Startup
+@using Kaizen.Web.Models.AcademicYear
+@model AcademicYearListViewModel
+@{
+    ViewBag.Title = L("AcademicYears");
+    ViewBag.CurrentPageName = PageNames.Customers;
+}
+@section scripts
+{
+    <environment names="Development">
+        <script src="~/view-resources/Views/AcademicYear/Index.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/Company/Index.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/AcademicYear/Index.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/Company/Index.min.js" asp-append-version="true"></script>
+    </environment>
+
+    <script>
+        new AcademicYear().setupGrid();
+        new Helpers().setupSelects([Company]);
+    </script>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">@L("AcademicYears")</h4>
+
+                    <div class="page-title-right">
+                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#AcademicYearCreateModal" class="btn btn-primary">
+                            <i class="fa fa-plus-square"></i>
+                            @L("Create")
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!--Use for bulk actions-->
+                        </div>
+                        <div class="col-md-6">
+                            @await Html.PartialAsync("~/Views/AcademicYears/Index.AdvancedSearch.cshtml")
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="AcademicYearTable" class="table table-hover table-nowrap mb-0 align-middle table-check">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="rounded-start"></th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Archived</th>
+                                    <th class="no-filter rounded-end" style="width: 100px"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Views/AcademicYears/_CreateModal.cshtml", Model)
+@await Html.PartialAsync("~/Views/Companies/_CreateModal.cshtml", new Kaizen.Entities.Companies.Dto.CreateCompanyDto())
+<div class="modal fade" id="AcademicYearEditModal" tabindex="-1" role="dialog" aria-labelledby="AcademicYearEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>

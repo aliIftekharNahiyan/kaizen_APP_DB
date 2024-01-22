@@ -1,0 +1,175 @@
+﻿@using Abp.Authorization.Users;
+@using Kaizen.Web.Startup
+@using Kaizen.Web.Models.Users
+@model UserEditViewModel
+@{
+    ViewBag.Title = L("EditUser");
+    ViewBag.CurrentPageName = PageNames.Customers;
+}
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/view-resources/Views/Address/Edit.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/Customers/Edit.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/Address/Edit.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/Customers/Edit.min.js" asp-append-version="true"></script>
+    </environment>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>@Model.User.Name @Model.User.Surname</h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" role="tab" href="#edit-user-details">
+                                <span class="d-none d-sm-block">@L("UserDetails")</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" role="tab" href="#edit-user-addresses">
+                                <span class="d-none d-sm-block">Addresses</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" role="tab" href="#edit-user-roles">
+                                <span class="d-none d-sm-block">@L("UserRoles")</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content p-3 text-muted">
+                        <div role="tabpanel" class="tab-pane active" id="edit-user-details">
+
+                            <form asp-asp-controller="Users" asp-action="Edit" role="form" class="form-horizontal">
+                                <input type="hidden" asp-for="User.Id" />
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3 row">
+                                            <label class="col-md-3 col-form-label" for="username">@L("UserName")</label>
+                                            <div class="col-md-9 required">
+                                                <input asp-for="User.UserName" type="text" class="form-control" required maxlength="@AbpUserBase.MaxUserNameLength" minlength="2">
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label class="col-md-3 col-form-label" for="name">@L("Name")</label>
+                                            <div class="col-md-9 required">
+                                                <input asp-for="User.Name" type="text" class="form-control" required maxlength="@AbpUserBase.MaxNameLength">
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label class="col-md-3 col-form-label" for="surname">@L("Surname")</label>
+                                            <div class="col-md-9 required">
+                                                <input asp-for="User.Surname" type="text" class="form-control" required maxlength="@AbpUserBase.MaxSurnameLength">
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label class="col-md-3 col-form-label" for="email">@L("EmailAddress")</label>
+                                            <div class="col-md-9 required">
+                                                <input type="email" class="form-control" asp-for="User.EmailAddress" required maxlength="@AbpUserBase.MaxEmailAddressLength">
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" asp-for="User.IsActive" type="checkbox" />
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    @L("IsActive")
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="float-end">
+                                    <button type="button" class="btn btn-danger">@L("Cancel")</button>
+                                    <button type="submit" class="btn btn-primary ml-1">@L("Save")</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="edit-user-addresses">
+                            <section class="content-header">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#AddressCreateModal" class="btn btn-primary">
+                                                <i class="fa fa-plus-square"></i>
+                                                @L("Create")
+                                            </a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            @await Html.PartialAsync("~/Views/Address/Index.AdvancedSearch.cshtml")
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <div class="table-responsive">
+                                <table id="AddressTable" class="table table-hover table-nowrap mb-0 align-middle table-check">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th class="rounded-start"></th>
+                                            <th>@L("Name")</th>
+                                            <th>@L("AddressLine1")</th>
+                                            <th>@L("AddressLine2")</th>
+                                            <th>@L("AddressLine3")</th>
+                                            <th>@L("City")</th>
+                                            <th>@L("County")</th>
+                                            <th>@L("Postcode")</th>
+                                            <th>@L("IsPrimary")</th>
+                                            <th style="width: 100px" class="rounded-end"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="edit-user-roles">
+                            <div class="row">
+                                @foreach (var role in Model.Roles)
+                                {
+                                    <div class="col-md-6">
+                                        <input type="checkbox" name="role" value="@role.NormalizedName" title="@role.Description" class="filled-in" id="@($"role{role.Id}")" @(Model.UserIsInRole(role) ? "checked" : "") />
+                                        <label for="@($"role{role.Id}")" title="@role.DisplayName">@role.Name</label>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@await Html.PartialAsync("~/Views/Address/_CreateModal.cshtml", Model.Addresses)
+
+<div class="modal fade" id="AddressEditModal" tabindex="-1" role="dialog" aria-labelledby="AddressEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>

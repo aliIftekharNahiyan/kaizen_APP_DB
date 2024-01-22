@@ -1,0 +1,61 @@
+@using Abp.Authorization.Users
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.SupportSessions
+@model SupportSessionListViewModel
+@{
+    Layout = null;
+}
+<div class="modal fade" id="SupportSessionCreateModal" tabindex="-1" role="dialog" aria-labelledby="SupportSessionCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            @await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Create Support Session"))
+            <form name="sessionGroupCreateForm" role="form" class="form-horizontal">
+                <div class="modal-body">
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">@L("Session Group")</label>
+                        <div class="col-md-9">
+                            <select class="select2 form-control" name="SessionGroupId" required data-service="SessionGroup"></select>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">@L("Support Type")</label>
+                        <div class="col-md-9">
+                            <select class="select2 form-control" name="SupportTypeId" required data-service="SupportType"></select>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">@L("Funding Body")</label>
+                        <div class="col-md-9">
+                            <select class="select2 form-control" name="FundingBodyId" required data-service="FundingBody"></select>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">@L("Session Start Date/Time")</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control mobidatetimepicker" name="SessionStartDate" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">@L("Session End Date/Time")</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control mobidatetimepicker" name="SessionEndDate" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">@L("Session Type")</label>
+                        <div class="col-md-9">
+                            <select class="select2 form-control" name="SessionTypeId" required data-service="SessionType"></select>
+                        </div>
+                    </div>
+                    <div class="mb-3 row required">
+                        <label class="col-md-3 col-form-label">@L("Support Professional")</label>
+                        <div class="col-md-9">
+                            <select class="select2 form-control" name="SupportProfessionalUserId" required data-service="User"></select>
+                        </div>
+                    </div>
+
+                </div>@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+            </form>
+        </div>
+    </div>
+</div>

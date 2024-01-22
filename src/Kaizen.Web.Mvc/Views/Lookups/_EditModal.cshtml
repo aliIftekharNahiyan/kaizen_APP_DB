@@ -1,0 +1,47 @@
+@using Abp.Authorization.Users
+@using Kaizen.Enums;
+@using Kaizen.Web.Models.Common.Modals
+@using Kaizen.Web.Models.Lookups
+@model EditLookupModalViewModel
+@{
+    Layout = null;
+}
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditLookup")))<form name="LookupEditForm" role="form" class="form-horizontal">
+    <input type="hidden" name="Id" value="@Model.Lookup.Id" />
+    <div class="modal-body">
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">Lookup</label>
+            <div class="col-md-9">
+                <select class="select2 form-control" name="LookTypeId"  value="@Model.Lookup.LookTypeId" asp-for="@Model.Lookup.LookTypeId" asp-items="@(EnumHelper.GetEnumSelectListWithDescription<CommonEnum.LookupType>("Select an option","0"))" required>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("Name")</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="Name" value="@Model.Lookup.Name" required minlength="3" maxlength="250">
+            </div>
+        </div>
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">Short Name</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="SName" value="@Model.Lookup.SName" required minlength="3" maxlength="250">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-md-3 col-form-label">@L("Description")</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="Description" value="@Model.Lookup.Description" minlength="3" maxlength="1024">
+            </div>
+        </div>
+        <div class="mb-3 row required">
+            <label class="col-md-3 col-form-label">@L("IsActive")</label>
+            <div class="col-md-9">
+              <input class="form-check-input" id="IsActive" type="checkbox" name="IsActive" asp-for="@Model.Lookup.IsActive" />          
+              @*  @Html.CheckBox("IsActive",new {@class="form-check-input"})*@
+            </div>
+        </div>
+    </div>@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/Lookup/_EditModal.js" asp-append-version="true"></script>

@@ -1,0 +1,103 @@
+@using Kaizen.Web.Models.FundingBodys;
+@using Kaizen.Web.Models.SupportTypes;
+@using Kaizen.Web.Startup
+@using Kaizen.Web.Models.SessionGroups
+@model SessionGroupListViewModel
+@{
+    ViewBag.Title = L("Session Groups");
+    ViewBag.CurrentPageName = PageNames.Customers;
+}
+@section scripts
+{
+    <environment names="Development">
+        <script src="~/view-resources/Views/SessionGroup/Index.js" asp-append-version="true"></script>
+        <script src="~/view-resources/views/genericbulkprocess/index.js" asp-append-version="true"></script>
+    @*  <script src="~/view-resources/Views/SupportTypes/Index.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/FundingBody/Index.js" asp-append-version="true"></script>*@
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/SessionGroup/Index.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/views/genericbulkprocess/index.min.js" asp-append-version="true"></script>
+      @*  <script src="~/view-resources/Views/SupportTypes/Index.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/FundingBody/Index.min.js" asp-append-version="true"></script>*@
+    </environment>
+
+    <script>
+        new SessionGroup().setupGrid();
+        new Helpers().setupSelects([SupportType, FundingBody]);
+    </script>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">Session Groups</h4>
+
+                    <div class="page-title-right">
+                       @* <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#SessionGroupCreateModal" class="btn btn-primary">
+                            <i class="fa fa-plus-square"></i>
+                            Create
+                        </a>*@
+
+                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#SessionGroupUploadModal" class="btn btn-primary">
+                            <i class="fa fa-plus-square"></i>
+                            @L("Bulk Create")
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!--Use for bulk actions-->
+                        </div>
+                        <div class="col-md-6">
+                            @await Html.PartialAsync("~/Views/SessionGroups/Index.AdvancedSearch.cshtml")
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="SessionGroupTable" class="table table-hover table-nowrap mb-0 align-middle table-check">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="rounded-start"></th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Support Type</th>
+                                    <th>Funding Body</th>
+                                    <th class="no-filter rounded-end" style="width: 100px"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Views/Shared/GenericBulkProcess/_GenericBulkProcessUpload.cshtml", new Kaizen.Web.Models.GenericBulkProcess.GenericBulkProcessViewModel {
+    BulkProcessType = Kaizen.Enums.BulkProcessType.SessionGroup,
+    ElementId = "sessionGroupBulkUpload"
+})
+
+<div class="modal fade" id="SessionGroupEditModal" tabindex="-1" role="dialog" aria-labelledby="SessionGroupEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>

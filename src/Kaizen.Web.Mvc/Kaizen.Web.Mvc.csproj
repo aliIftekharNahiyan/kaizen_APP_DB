@@ -1,0 +1,248 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyName>Kaizen.Web.Mvc</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>Kaizen.Web.Mvc</PackageId>
+    <UserSecretsId>AbpCompanyName-Kaizen-56C2EF2F-ABD6-4EFC-AAF2-2E81C34E8FB1</UserSecretsId>
+    <RootNamespace>Kaizen.Web</RootNamespace>
+    <TargetFramework>net7.0</TargetFramework>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
+    <PreserveCompilationReferences>true</PreserveCompilationReferences>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="Views\AcademicTerms\Index.AdvancedSearch.cshtml" />
+    <Content Remove="Views\AcademicTerms\_EditModal.cshtml" />
+    <Content Remove="Views\Account\__Scripts.cshtml" />
+    <Content Remove="Views\Communications\Index.AdvancedSearch.cshtml" />
+    <Content Remove="Views\CommunicationTemplates\Index.AdvancedSearch.cshtml" />
+    <Content Remove="Views\Companies\Index.AdvancedSearch.cshtml" />
+    <Content Remove="Views\Companies\_EditModal.cshtml" />
+    <Content Remove="Views\CourseTerms\_EditModal.cshtml" />
+    <Content Remove="Views\SupportSessions\Index.AdvancedSearch.cshtml" />
+    <Content Remove="Views\SupportSessions\_EditModal.cshtml" />
+    <Content Remove="Views\SessionTypes\Index.AdvancedSearch.cshtml" />
+    <Content Remove="Views\SessionTypes\_EditModal.cshtml" />
+    <Content Remove="Views\AcademicYears\Index.AdvancedSearch.cshtml" />
+    <Content Remove="Views\AcademicYears\_EditModal.cshtml" />
+    <Content Remove="wwwroot\view-resources\Views\ChecklistItem\Todo.js" />
+    <Content Remove="wwwroot\view-resources\Views\Helpers\Index.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Views\AcademicTerms\Index.AdvancedSearch.cshtml" />
+    <None Include="Views\AcademicTerms\_EditModal.cshtml" />
+    <None Include="Views\Account\__Scripts.cshtml" />
+    <None Include="Views\ChecklistItems\Index.AdvancedSearch.cshtml" />
+    <None Include="Views\Communications\Index.AdvancedSearch.cshtml" />
+    <None Include="Views\Checklists\Index.AdvancedSearch.cshtml" />
+    <None Include="Views\CommunicationTemplates\Index.AdvancedSearch.cshtml" />
+    <None Include="Views\CourseTerms\_EditModal.cshtml" />
+    <None Include="Views\SessionTypes\Index.AdvancedSearch.cshtml" />
+    <None Include="Views\SessionTypes\_EditModal.cshtml" />
+    <None Include="Views\Companies\Index.AdvancedSearch.cshtml" />
+    <None Include="Views\Companies\_EditModal.cshtml" />
+    <None Include="Views\AcademicYears\Index.AdvancedSearch.cshtml" />
+    <None Include="Views\AcademicYears\_EditModal.cshtml" />
+    <None Include="Views\FundingBodys\Index.AdvancedSearch.cshtml" />
+    <None Include="Views\FundingBodys\_EditModal.cshtml" />
+    <None Include="Views\SessionGroups\Index.AdvancedSearch.cshtml" />
+    <None Include="Views\SessionGroups\_EditModal.cshtml" />
+    <None Include="wwwroot\assets\fonts\boxicons.svg" />
+    <None Include="wwwroot\assets\fonts\boxicons.woff2" />
+    <None Include="wwwroot\assets\fonts\fa-brands-400.svg" />
+    <None Include="wwwroot\assets\fonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\assets\fonts\fa-regular-400.svg" />
+    <None Include="wwwroot\assets\fonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\assets\fonts\fa-solid-900.svg" />
+    <None Include="wwwroot\assets\fonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\assets\fonts\materialdesignicons-webfont.woff2" />
+    <None Include="wwwroot\assets\js\app.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-area.init.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-bar.init.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-boxplot.init.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-bubble.init.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-candlestick.init.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-column.init.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-heatmap.init.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-line.init.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-mixed.init.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-pie.init.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-polararea.init.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-radar.init.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-radialbar.init.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-scatter.init.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-timeline.init.js" />
+    <None Include="wwwroot\assets\js\pages\apexcharts-treemap.init.js" />
+    <None Include="wwwroot\assets\js\pages\calendar.init.js" />
+    <None Include="wwwroot\assets\js\pages\coming-soon.init.js" />
+    <None Include="wwwroot\assets\js\pages\dashboard-analytics.init.js" />
+    <None Include="wwwroot\assets\js\pages\dashboard-sales.init.js" />
+    <None Include="wwwroot\assets\js\pages\email-editor.init.js" />
+    <None Include="wwwroot\assets\js\pages\file-manager.init.js" />
+    <None Include="wwwroot\assets\js\pages\fontawesome.init.js" />
+    <None Include="wwwroot\assets\js\pages\form-advanced.init.js" />
+    <None Include="wwwroot\assets\js\pages\form-editor.init.js" />
+    <None Include="wwwroot\assets\js\pages\form-mask.init.js" />
+    <None Include="wwwroot\assets\js\pages\form-validation.init.js" />
+    <None Include="wwwroot\assets\js\pages\form-wizard.init.js" />
+    <None Include="wwwroot\assets\js\pages\gallery.init.js" />
+    <None Include="wwwroot\assets\js\pages\gmaps.init.js" />
+    <None Include="wwwroot\assets\js\pages\gridjs.init.js" />
+    <None Include="wwwroot\assets\js\pages\invoice-list.init.js" />
+    <None Include="wwwroot\assets\js\pages\kanbanboard.init.js" />
+    <None Include="wwwroot\assets\js\pages\leaflet-map.init.js" />
+    <None Include="wwwroot\assets\js\pages\leaflet-us-states.js" />
+    <None Include="wwwroot\assets\js\pages\lightbox.init.js" />
+    <None Include="wwwroot\assets\js\pages\materialdesign.init.js" />
+    <None Include="wwwroot\assets\js\pages\notification.init.js" />
+    <None Include="wwwroot\assets\js\pages\pages-datepicker.init.js" />
+    <None Include="wwwroot\assets\js\pages\pricing.init.js" />
+    <None Include="wwwroot\assets\js\pages\profile.init.js" />
+    <None Include="wwwroot\assets\js\pages\project-create.init.js" />
+    <None Include="wwwroot\assets\js\pages\range-sliders.init.js" />
+    <None Include="wwwroot\assets\js\pages\rating.init.js" />
+    <None Include="wwwroot\assets\js\pages\sweet-alerts.init.js" />
+    <None Include="wwwroot\assets\js\pages\swiper-slider.init.js" />
+    <None Include="wwwroot\assets\js\pages\timeline.init.js" />
+    <None Include="wwwroot\assets\js\pages\two-step-verification.init.js" />
+    <None Include="wwwroot\assets\js\pages\user-settings.init.js" />
+    <None Include="wwwroot\assets\js\pages\vector-maps.init.js" />
+    <None Include="wwwroot\assets\js\pages\widgets.init.js" />
+    <None Include="wwwroot\assets\js\helpers.js" />
+    <None Include="wwwroot\view-resources\Views\ChecklistItem\Todo.js" />
+    <None Include="wwwroot\view-resources\Views\ChecklistItem\Index.js" />
+    <None Include="wwwroot\view-resources\Views\ChecklistItem\_EditModal.js" />
+    <None Include="wwwroot\view-resources\Views\Checklist\Index.js" />
+    <None Include="wwwroot\view-resources\Views\Checklist\_EditModal.js" />
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="wwwroot\**\*;Views\**\*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kaizen.Web.Core\Kaizen.Web.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />
+    <PackageReference Include="Bugsnag.AspNet.Core" Version="3.1.0" />
+    <PackageReference Include="BuildBundlerMinifier2022" Version="2.9.9" />
+    <PackageReference Include="BundlerMinifier.Core" Version="3.2.449" />
+    <PackageReference Include="CsvHelper" Version="30.0.1" />
+    <PackageReference Include="Hangfire.Core" Version="1.8.3" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.8.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.3" />
+    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.21.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="NReco.PdfGenerator" Version="1.2.1" />
+    <PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.2" />
+    <PackageReference Include="Abp.HangFire" Version="8.1.0" />
+    <PackageReference Include="Abp.RedisCache" Version="8.1.0" />
+    <PackageReference Include="Abp.Castle.Log4Net" Version="8.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\libs\alertifyjs\src\" />
+    <Folder Include="wwwroot\assets\libs\choices.js\src\" />
+    <Folder Include="wwwroot\assets\libs\flatpickr\types\" />
+    <Folder Include="wwwroot\assets\libs\flatpickr\utils\" />
+    <Folder Include="wwwroot\assets\libs\gmaps\docs\" />
+    <Folder Include="wwwroot\assets\libs\gmaps\examples\" />
+    <Folder Include="wwwroot\assets\libs\gmaps\test\" />
+    <Folder Include="wwwroot\assets\libs\gridjs\src\" />
+    <Folder Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\chalk\types\" />
+    <Folder Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\docs\" />
+    <Folder Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\rtlcss\docs\" />
+    <Folder Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\rtlcss\node_modules\" />
+    <Folder Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\rtlcss\test\" />
+    <Folder Include="wwwroot\assets\libs\metismenujs\types\" />
+    <Folder Include="wwwroot\assets\libs\moment\src\" />
+    <Folder Include="wwwroot\assets\libs\nouislider\distribute\" />
+    <Folder Include="wwwroot\assets\libs\rater-js\example\" />
+    <Folder Include="wwwroot\assets\libs\rater-js\test\" />
+    <Folder Include="wwwroot\assets\libs\rtlcss\node_modules\postcss\node_modules\" />
+    <Folder Include="wwwroot\assets\libs\swiper\angular\angular\src\" />
+    <Folder Include="wwwroot\assets\libs\swiper\angular\esm2015\angular\src\" />
+    <Folder Include="wwwroot\assets\libs\swiper\bundle\" />
+    <Folder Include="wwwroot\assets\libs\swiper\components\autoplay\" />
+    <Folder Include="wwwroot\assets\libs\swiper\components\hash-navigation\" />
+    <Folder Include="wwwroot\assets\libs\swiper\components\history\" />
+    <Folder Include="wwwroot\assets\libs\swiper\components\keyboard\" />
+    <Folder Include="wwwroot\assets\libs\swiper\components\mousewheel\" />
+    <Folder Include="wwwroot\assets\libs\swiper\components\parallax\" />
+    <Folder Include="wwwroot\assets\libs\swiper\components\virtual\" />
+    <Folder Include="wwwroot\assets\libs\swiper\core\" />
+    <Folder Include="wwwroot\assets\libs\swiper\react\" />
+    <Folder Include="wwwroot\assets\libs\swiper\svelte\" />
+    <Folder Include="wwwroot\assets\libs\swiper\types\components\" />
+    <Folder Include="wwwroot\assets\libs\swiper\vue\" />
+    <Folder Include="wwwroot\libs\quill\" />
+    <Folder Include="wwwroot\libs\select2\css\" />
+    <Folder Include="wwwroot\libs\select2\js\" />
+    <Folder Include="wwwroot\view-resources\Views\Helpers\" />
+    <Folder Include="wwwroot\view-resources\Views\_Bundles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="wwwroot\view-resources\Views\Course\Index.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Course\Index.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Views\AcademicTerms\Index.AdvancedSearch.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="Views\AcademicTerms\_EditModal.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="Views\Communications\Index.AdvancedSearch.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="Views\CommunicationTemplates\Index.AdvancedSearch.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="Views\CourseTerms\_EditModal.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="Views\SessionTypes\Index.AdvancedSearch.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="Views\SessionTypes\_EditModal.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="Views\Companies\Index.AdvancedSearch.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="Views\Companies\_EditModal.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="Views\AcademicYears\Index.AdvancedSearch.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="Views\AcademicYears\_EditModal.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="wwwroot\assets\js\helpers.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="wwwroot\view-resources\Views\ChecklistItem\Todo.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+</Project>
