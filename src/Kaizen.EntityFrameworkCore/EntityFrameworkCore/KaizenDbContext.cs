@@ -64,11 +64,11 @@ namespace Kaizen.EntityFrameworkCore
             modelBuilder.Entity<Company>().HasQueryFilter(p => !p.Deleted);
             modelBuilder.Entity<SessionType>().HasQueryFilter(p => !p.Deleted);
 
-            modelBuilder.Entity<UserClientSupport>()
-                .HasOne(c => c.Users)
-                .WithOne()
-                .HasForeignKey<UserClientSupport>(c => c.UserId)
-                .HasForeignKey<UserClientSupport>(c => c.ClientId);
+            //modelBuilder.Entity<UserClientSupport>()
+            //    .HasOne(c => c.Users)
+            //    .WithOne()
+            //    .HasForeignKey<UserClientSupport>(c => c.UserId)
+            //    .HasForeignKey<UserClientSupport>(c => c.ClientId);
 
 
 
